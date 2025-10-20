@@ -1,0 +1,85 @@
+print("Bem vindo a madereira do lenhador William Vieira Xavier \n")
+#Dicionarios abaixo
+precos = { "PIN": 150.40,
+           "PER": 170.20,
+           "MOG": 190.90,
+           "IPE": 210.10,
+           "IMB": 220.70,}
+
+transportes = {
+    1: 1000.00,
+    2: 2000.00,
+    3: 2500.00
+}
+
+#Funções
+def menu_final(msg):#menu final
+    print("-"*len(msg))
+    print(msg)
+    print("-"*len(msg))
+
+
+def escolha_tipo(): #função para escolher o tipo de madeira
+    while True:
+        tipo = input("Digite o tipo de tora desejado (PIN/PER/MOG/IPE/IMB): ").upper().strip()
+        if tipo in precos:
+            return precos[tipo]
+        else:
+            print("Por favor, digite um valor válido")
+
+def qtd_tora(): #função para receber a quantidade e descobrir o desconto
+    while True:
+        try:
+            quantidade = float(input("Digite a quantidade de toras em m³: "))
+            if quantidade > 2000:
+                print("A quantidade máxima é de 2000m³")
+                continue
+            #validações
+            if quantidade < 100:
+                desconto = 0
+
+            elif quantidade < 500:
+                desconto = 0.04
+
+            elif quantidade < 1000:
+                desconto = 0.09
+
+            else:
+                desconto = 0.16
+
+            return quantidade, desconto
+        
+        except ValueError:
+            print("DIGITE APENAS NÚMEROS.")
+
+def transporte (): #função para receber o tipo de transporte. Está vinculado com o dicionario para receber os preços
+    while True:
+        print("Opções para transporte: ")
+        print("1 - Rodoviario (R$ 1000,00)")
+        print("2 - Ferroviário R$ 2000,00")
+        print("3- Hidroviário R$ 2500,00")
+
+        try:
+            opcao = int(input("Escolha o tipo de transporte (1/2/3): "))
+            if opcao in transportes:
+                return transportes[opcao]#utilização do dicionario
+            else:
+                print("Opção inválida, por favor, digite um valor válido.")
+        except ValueError:
+            print("Valor inválido. Digite apenas números")
+        
+try: #variaveis recebendo os dados das funções
+    valor_madeira = escolha_tipo()
+    quantidade, desconto = qtd_tora()
+    valor_transporte = transporte()
+    #calculo final
+    valor_bruto = valor_madeira * quantidade
+    valor_com_desconto = valor_bruto * (1 - desconto)
+    total = valor_com_desconto + valor_transporte
+except:
+    print("Ocorreu um erro inesperado...")
+
+#utilização da função de menu
+menu_final("TOTAL A PAGAR")
+
+print(f"Total: R$ {total:,.2f}")
