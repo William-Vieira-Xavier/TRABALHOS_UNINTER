@@ -4,8 +4,8 @@ def cadastrar_item():
     while True:
         try:
             adicionar_item = input("Digite o nome do item para inserir: ").lower().strip()
-        except:
-            print("Dado inválido.")
+        except Exception as e:
+            print("O erro foi", e)
 
         itens.append(adicionar_item)
         print("Item cadastrado!")
@@ -30,12 +30,12 @@ def remove_item():
             
             elif remover_item not in itens:
                 print('Este item não existe na listagem.')
-        except:
-            print("Dado inválido.")
+        except Exception as e:
+            print("O erro foi", e)
 
-        cadastrar = input("Deseja remover mais algum item? ").lower().strip()
+        cadastrar = input("Deseja remover mais algum item? \n ").lower().strip()
         if cadastrar == 'n':
-            print()
+            
             break
             
         else:
@@ -49,11 +49,11 @@ while True:
     print("1 - Adicionar um item")
     print("2 - Remover um item")
     print("3 - Ver todos os itens")
-    print("4 - Para encerrar o programa")
+    print("4 - Para encerrar o programa \n")
     try:    
         escolha = int(input("Qual sua escolha: "))
-    except:
-        print("Valor inválido. TENTE NOVAMENTE")
+    except Exception as e:
+        print("Valor inválido. o erro é", e)
         continue
     try:
         if escolha == 1:
@@ -71,3 +71,4 @@ while True:
 
     except:
         print("Algo deu errado")
+
