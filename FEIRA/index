@@ -1,0 +1,73 @@
+itens = ["maça", "laranja", "feijão"]
+
+def cadastrar_item():
+    while True:
+        try:
+            adicionar_item = input("Digite o nome do item para inserir: ").lower().strip()
+        except:
+            print("Dado inválido.")
+
+        itens.append(adicionar_item)
+        print("Item cadastrado!")
+        print(itens)
+        
+        cadastrar = input("Deseja cadastrar mais algum item? ").lower().strip()
+
+        if cadastrar == 'n':
+            print()
+            break
+        else:
+            continue
+
+def remove_item():
+    while True:
+        try:
+            remover_item = input("Digite o nome do item para inserir").lower().strip()
+            if remover_item in itens:
+                itens.remove(remover_item)
+                print("Item removido!")
+                print(itens)
+            
+            elif remover_item not in itens:
+                print('Este item não existe na listagem.')
+        except:
+            print("Dado inválido.")
+
+        cadastrar = input("Deseja remover mais algum item? ").lower().strip()
+        if cadastrar == 'n':
+            print()
+            break
+            
+        else:
+            continue
+
+
+while True:
+    print("-"*30)
+    print("-"*15, "MENU", "-"*15)
+    print("-"*30)
+    print("1 - Adicionar um item")
+    print("2 - Remover um item")
+    print("3 - Ver todos os itens")
+    print("4 - Para encerrar o programa")
+    try:    
+        escolha = int(input("Qual sua escolha: "))
+    except:
+        print("Valor inválido. TENTE NOVAMENTE")
+        continue
+    try:
+        if escolha == 1:
+            cadastrar_item()
+            continue
+        elif escolha == 2:
+            remove_item()
+            continue
+        elif escolha == 3: 
+            print(itens)
+            continue
+        elif escolha == 4:
+            print("Encerrando o programa...")
+        break
+
+    except:
+        print("Algo deu errado")
